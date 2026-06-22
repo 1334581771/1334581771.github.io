@@ -1,0 +1,675 @@
+/* ============================================
+   Medical Resume - A4 Paper Style
+   Inspired by wu-sili resume format
+   ============================================ */
+
+/* CSS Variables */
+:root {
+    --primary: #0d6efd;
+    --primary-light: #e7f1ff;
+    --primary-dark: #0b5ed7;
+    --accent: #00b4d8;
+    --medical-green: #198754;
+    --medical-green-light: #d1f2eb;
+    --dark: #1a1a2e;
+    --text: #2d3748;
+    --text-light: #4a5568;
+    --text-muted: #718096;
+    --border: #e2e8f0;
+    --border-light: #edf2f7;
+    --bg: #f5f7fa;
+    --bg-card: #ffffff;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --radius: 8px;
+    --radius-lg: 12px;
+    --page-width: 1024px;
+    --page-min-height: 1440px;
+    --font-sans: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --transition: 0.2s ease;
+}
+
+/* Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    padding: 24px 16px;
+}
+
+/* Custom Scrollbar (wu-sili style) */
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+}
+
+/* Print Button */
+.print-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+    transition: all var(--transition);
+}
+.print-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+}
+.print-btn svg {
+    flex-shrink: 0;
+}
+
+/* Resume Page (A4 Style) */
+.resume-page {
+    max-width: var(--page-width);
+    min-height: var(--page-min-height);
+    margin: 0 auto;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
+}
+
+/* ===== Header ===== */
+.resume-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 48px 48px 36px;
+    position: relative;
+}
+
+.resume-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--medical-green));
+}
+
+.header-main {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 28px;
+}
+
+/* Avatar */
+.avatar-wrap {
+    flex-shrink: 0;
+    position: relative;
+}
+.avatar-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent), var(--medical-green));
+    z-index: 0;
+}
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    position: relative;
+    z-index: 1;
+    display: block;
+    background: #e2e8f0;
+}
+
+.header-info {
+    flex: 1;
+}
+
+.name {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+}
+
+.title {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 14px;
+}
+
+.header-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Contact Row */
+.header-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color var(--transition);
+}
+.contact-link:hover {
+    color: white;
+}
+.contact-icon {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* ===== Body Layout ===== */
+.resume-body {
+    display: flex;
+    padding: 40px 48px;
+    gap: 40px;
+}
+
+.resume-left {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.resume-right {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ===== Section ===== */
+.section + .section {
+    margin-top: 32px;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-icon {
+    font-size: 1.2rem;
+    display: inline-flex;
+}
+
+/* ===== Education (Left) ===== */
+.edu-item {
+    position: relative;
+    padding-left: 16px;
+    border-left: 2px solid var(--border);
+    padding-bottom: 16px;
+}
+.edu-item:last-child {
+    border-left-color: transparent;
+    padding-bottom: 0;
+}
+.edu-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px var(--border);
+}
+.edu-item:nth-child(2)::before { background: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+.edu-item:nth-child(3)::before { background: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.edu-item:nth-child(4)::before { background: var(--medical-green); box-shadow: 0 0 0 1px var(--medical-green); }
+
+.edu-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+.edu-badge.phd { background: var(--primary-light); color: var(--primary-dark); }
+.edu-badge.csc { background: #fef3c7; color: #d97706; }
+.edu-badge.master { background: #e0e7ff; color: #4f46e5; }
+.edu-badge.bachelor { background: #f3f4f6; color: #6b7280; }
+
+.edu-school {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--dark);
+    margin-bottom: 2px;
+}
+.edu-school small {
+    font-weight: 400;
+    color: var(--primary);
+    font-size: 0.8rem;
+}
+.edu-major {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 2px;
+}
+.edu-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+.edu-advisor {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ===== Skills (Left) ===== */
+.skill-group + .skill-group {
+    margin-top: 16px;
+}
+.skill-group-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+}
+
+.skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.pill {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border-light);
+    border-radius: 100px;
+    color: var(--text-light);
+    transition: all var(--transition);
+}
+.pill:hover {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    border-color: var(--primary-light);
+}
+.pill-cert {
+    background: var(--medical-green-light);
+    color: var(--medical-green);
+    border-color: #a7f3d0;
+}
+.pill-tech {
+    background: #e0e7ff;
+    color: #4f46e5;
+    border-color: #c7d2fe;
+    font-family: 'SF Mono', Monaco, monospace;
+    font-weight: 600;
+}
+
+/* ===== Experience Compact (Left) ===== */
+.exp-compact + .exp-compact {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-light);
+}
+.exp-compact-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--dark);
+    margin-bottom: 4px;
+}
+.exp-compact-role {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.exp-compact-time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+/* ===== Profile (Right) ===== */
+.profile-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-light);
+}
+
+/* Code block style (wu-sili inspired) */
+strong {
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+    font-size: 0.85em;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #494949;
+    margin: 0 2px;
+    padding: 2px 7px;
+    background-color: #F6F6F6;
+    border-radius: 5px;
+    border: 1px solid rgb(235, 235, 235);
+    white-space: nowrap;
+}
+
+/* ===== Research (Right) ===== */
+.research-item + .research-item {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border-light);
+}
+.research-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.research-stage {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--dark);
+}
+.research-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+.research-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* ===== Publications (Right) ===== */
+.pub-count {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 2px 10px;
+    border-radius: 100px;
+    margin-left: auto;
+}
+
+.pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pub-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #fafbfc;
+    border-radius: var(--radius);
+    border-left: 3px solid var(--border);
+    transition: all var(--transition);
+}
+.pub-item:hover {
+    background: #f5f7fa;
+    transform: translateX(2px);
+}
+.pub-item.q1 { border-left-color: var(--primary); }
+.pub-item.q2 { border-left-color: var(--accent); }
+.pub-item.q3 { border-left-color: var(--text-muted); }
+.pub-item.q4 { border-left-color: #9ca3af; }
+.pub-item.core { border-left-color: var(--medical-green); }
+
+.pub-rank {
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    height: fit-content;
+    align-self: flex-start;
+}
+.pub-item.q1 .pub-rank { background: var(--primary-light); color: var(--primary-dark); }
+.pub-item.q2 .pub-rank { background: #e0f2fe; color: #0369a1; }
+.pub-item.q3 .pub-rank { background: #f3f4f6; color: #6b7280; }
+.pub-item.q4 .pub-rank { background: #f3f4f6; color: #6b7280; }
+.pub-item.core .pub-rank { background: var(--medical-green-light); color: var(--medical-green); }
+
+.pub-detail {
+    flex: 1;
+    min-width: 0;
+}
+.pub-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.5;
+    margin-bottom: 4px;
+}
+.pub-journal {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+.pub-if {
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    margin-left: 4px;
+}
+.pub-role {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #d97706;
+    background: #fef3c7;
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+}
+
+/* ===== Footer ===== */
+.resume-footer {
+    padding: 20px 48px;
+    background: #fafbfc;
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Emoji */
+.emoji {
+    font-style: normal;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media screen and (max-width: 900px) {
+    .resume-body {
+        flex-direction: column;
+        padding: 32px 24px;
+        gap: 32px;
+    }
+    .resume-left {
+        width: 100%;
+    }
+    .header-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .name {
+        font-size: 2rem;
+    }
+    .header-contact {
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        padding: 0;
+        background: white;
+    }
+    .resume-page {
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .resume-header {
+        padding: 32px 24px 24px;
+    }
+    .resume-body {
+        padding: 24px;
+    }
+    .avatar {
+        width: 90px;
+        height: 90px;
+    }
+    .name {
+        font-size: 1.8rem;
+    }
+    .header-contact {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .print-btn {
+        bottom: 16px;
+        top: auto;
+        right: 16px;
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        font-size: 13px;
+    }
+    .print-btn {
+        display: none !important;
+    }
+    .resume-page {
+        max-width: none;
+        min-height: auto;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .resume-header {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 36px 40px 28px;
+    }
+    .resume-body {
+        padding: 32px 40px;
+        gap: 32px;
+    }
+    .section + .section {
+        margin-top: 24px;
+    }
+    .pub-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    .edu-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    .research-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    .exp-compact {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    strong {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .tag, .pill, .pill-cert, .pill-tech, .pub-rank, .pub-if, .pub-role, .edu-badge {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .avatar {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .resume-footer {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
