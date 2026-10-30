@@ -574,7 +574,39 @@ strong {
     }
 }
 
+/* 平板竖屏（768-1024px，如 iPad 竖屏） */
+@media screen and (max-width: 1024px) {
+    .resume-page {
+        max-width: 100%;
+    }
+    .resume-header {
+        padding: 40px 40px 30px;
+    }
+    .resume-body {
+        padding: 36px 40px;
+        gap: 36px;
+    }
+    .resume-left {
+        width: 280px;
+    }
+}
+
+/* 手机横屏 / 小平板（601-768px） */
+@media screen and (max-width: 768px) {
+    .resume-left {
+        width: 240px;
+    }
+    .resume-body {
+        gap: 28px;
+        padding: 32px 28px;
+    }
+}
+
+/* 手机竖屏（≤600px） */
 @media screen and (max-width: 600px) {
+    html {
+        font-size: 14px;
+    }
     body {
         padding: 0;
         background: white;
@@ -584,21 +616,50 @@ strong {
         box-shadow: none;
     }
     .resume-header {
-        padding: 32px 24px 24px;
+        padding: 32px 20px 24px;
+    }
+    .header-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .name {
+        font-size: 1.9rem;
+    }
+    .title {
+        font-size: 1.05rem;
+    }
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    .header-contact {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        padding-top: 16px;
+    }
+    .contact-link {
+        font-size: 0.85rem;
     }
     .resume-body {
-        padding: 24px;
+        padding: 28px 20px;
+        gap: 28px;
+    }
+    .section + .section {
+        margin-top: 28px;
+    }
+    .edu-school {
+        font-size: 0.95rem;
+    }
+    .edu-time {
+        font-size: 0.75rem;
+    }
+    .edu-advisor {
+        font-size: 0.75rem;
     }
     .avatar {
         width: 90px;
         height: 90px;
-    }
-    .name {
-        font-size: 1.8rem;
-    }
-    .header-contact {
-        flex-direction: column;
-        gap: 8px;
     }
     .print-btn {
         bottom: 16px;
@@ -606,6 +667,19 @@ strong {
         right: 16px;
         padding: 8px 16px;
         font-size: 0.8rem;
+    }
+    .pub-name {
+        font-size: 0.85rem;
+    }
+    .pub-journal {
+        font-size: 0.78rem;
+    }
+    .skill-pills {
+        gap: 6px;
+    }
+    .pill {
+        font-size: 0.75rem;
+        padding: 3px 10px;
     }
 }
 
